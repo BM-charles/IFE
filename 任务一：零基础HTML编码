@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.fir{
+			margin-left: 50px;
+			margin-top: 40px;
+		}
+		.sec{
+			margin-left: 100px;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="fir">
+		<h1>基础</h1>
+		<div class="sec">
+			<p>标题</p>
+			<h1>This is a heading</h1>
+			<h2>This is a heading</h2>
+			<h3>This is a heading</h3>
+			<h4>This is a heading</h4>
+			<h5>This is a heading</h5>
+			<h6>This is a heading</h6>
+		</div>
+		<div class="sec">
+			<p>段落</p>
+			<p>This is a paragraph.</p>
+			<p>This is another paragraph.</p>
+		</div>
+		<div class="sec">
+			<p>换行br</p>
+			<br>
+			<br>
+			<p>水平线hr</p>
+			<br>
+			<hr>
+		</div>
+	</div>
+
+
+
+	<div class="fir">
+		<h1>格式</h1>
+		<div class="sec">
+			<p>首字母缩写 acronym</p>
+			World Wide Web 的缩写是<acronym title="World Wide Web">WWW</acronym>
+		</div>
+		<div class="sec">
+			<p>这是缩写abbr 鼠标放在缩写显示全称</p>
+			中华人民共和国的缩写是<abbr title="中华人民共和国"> 中国</abbr>
+		</div>
+		<div class="sec">
+			<p>联系方式标签 通常在rooter标签里</p>
+			<address>联系方式 18846420512</address>
+		</div>
+		<div class="sec">
+			<p>粗体b</p>
+			<b>粗体</b>
+			<p>斜体i</p>
+			<i>斜体</i>
+			<p>打印机tt</p>
+			<tt>打印机</tt>
+			<p>大号字体big</p>
+			<big>大号字体</big>
+			<p>小号字体small</p>
+			<small>大号字体</small>
+		</div>
+		<div class="sec">
+			<p>文本方向 bdo 属性 dir='rtl' ltr</p>
+			<bdo dir="rtl">Here is some Hebrew text</bdo>
+		</div>
+		<div class="sec">
+			<p>长引用 blockquote</p>
+			hah
+			<blockquote>
+			This is a long quotation.This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation.
+			</blockquote>
+			<p>短引用q 自动加引号</p>
+			<q>This is a long quotation.This is a long quotation</q>
+			<!-- <p>“This is a long quotation.This is a long quotation”</p> -->
+		</div>
+		<div class="sec">
+			<p>删除线</p>
+			<del>二十</del>
+			<p>删除线</p>
+			<ins>十二</ins> 
+		</div>
+		<div class="sec">
+			<p>标记 mark</p>
+			<mark>标记</mark>
+		</div>
+		<div class="sec">
+			<p>测量标签 meter</p>
+			<meter  value="3" min="0" max="10">3/10</meter>
+			<br>
+			<meter value="0.6">60%</meter> 
+		</div>
+		<div class="sec">
+			<p>上标sup</p>
+			2<sup>3</sup>=8
+			<p>下标sub</p>
+			log<sub>2</sub>4=2
+		</div>
+		<div class="sec">
+			<p>细节 details>summary</p>
+			<details>
+			<summary>Copyright 2011.</summary>
+			<p>All pages and graphics on this web site are the property of W3School.</p>
+			</details>
+		</div>
+		<br>
+		<hr>
+	</div>
+	<div class="fir">
+		<h1>表单</h1>
+		<form action="post" style="margin-left: 100px;">
+			<fieldset style="width: 400px">
+			<legend>留言板</legend>
+			<div class="sec">
+				姓名：<input type="text"><br>
+				性别：<input type="radio" value="男" name="sex" checked='checked'>男<input type="radio" value="女" name="sex">女<br>
+				爱好：<input type="checkbox" value="1" name="like" checked='checked'>篮球 <input type="checkbox" value="2" name="like">足球<br>
+				地址：<select name="s" id="">
+					<optgroup label="黑龙江">
+						<option value ="绥化" selected="selected">绥化</option>
+    					<option value ="哈尔滨">哈尔滨</option>
+					</optgroup>
+					<optgroup label="辽宁">
+						<option value ="沈阳">沈阳</option>
+    					<option value ="铁岭">铁岭</option>
+					</optgroup>
+				</select><br>
+				现住地：<input list="dizhi">
+					<datalist id="dizhi">
+						<option value ="绥化" selected="selected">绥化</option>
+    					<option value ="哈尔滨">哈尔滨</option>
+						<option value ="沈阳">沈阳</option>
+    					<option value ="铁岭">铁岭</option>
+					</datalist><br>
+				留言：<textarea></textarea><br>
+				<input type="submit">
+				<input type="reset">
+			</div>
+			</fieldset>
+		</form>
+		<br>
+		<hr>
+	</div>
+	<div class="fir">
+		<h1>列表/表格</h1>
+		<div class="sec">
+			<p>ul>ol标签</p>
+			<ul>
+				<ol>1</ol>
+				<ol>2</ol>
+				<ol>3</ol>
+			</ul>
+		</div>
+		<div class="sec">
+			<p>ul>li标签</p>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="sec">
+			<table border="1">
+			  <tr>
+			    <th>Company</th>
+			    <th>Address</th>
+			  </tr>
+			
+			  <tr>
+			    <td>Apple, Inc.</td>
+			    <td>1 Infinite Loop Cupertino, CA 95014</td>
+			  </tr>
+			</table>
+		</div>
+	</div>
+	<div class="fir">
+		<h1>链接</h1>
+		<div class="sec">
+			<p>链接a</p>
+			<a href="http://www.wangzhihui.cc">This is a link</a>
+		</div>
+		<div class="sec">
+			<p>link标签链接外部文件</p>
+		</div>
+		<div class="sec">
+			<p>nav导航</p>
+			<nav>
+			<a href="#">HTML</a> |
+			<a href="#">CSS</a> |
+			<a href="#">JavaScript</a> |
+			<a href="#">jQuery</a>
+			</nav>
+		</div>
+
+
+		<br>
+		<hr>
+	</div>
+	<div class="fir">
+		<h1>图像</h1>
+		<div class="sec">
+			<p>这是图片</p>
+			<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491481321825&di=e618eccae1b32e8587bf9fb46dd8c388&imgtype=0&src=http%3A%2F%2Fimg0.bimg.126.net%2Fphoto%2F7G_vadMMteenEox1v7Mc5w%3D%3D%2F5418674776657784349.jpg" alt="性感女孩" />
+		</div>
+		<br>
+		<hr>
+	</div>
+	<div class="fir">
+		<h1>音/视频</h1>
+		<div class="sec">
+			<audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls">1</audio>
+		</div>
+		<div class="sec">
+			<video src="http://www.w3school.com.cn/i/movie.ogg" controls="controls">your browser does not support the video tag
+			</video>
+		</div>
+		<br>
+		<hr>
+	</div>
+</body>
+</html>
