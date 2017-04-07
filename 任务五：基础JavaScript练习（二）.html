@@ -58,6 +58,8 @@
 	<button id="rr">右侧入</button>
 	<button id="lc">左侧出</button>
 	<button id="rc">右侧出</button>
+	<button id="paix">排序</button>
+	<button id="stop">停止排序</button>
 	<div id="hehe"></div>
 	<div id="num"></div>
 	<script>
@@ -69,7 +71,10 @@
 		var ohehe = document.getElementById('hehe');
 		var oerr = document.getElementById('err');
 		var onum = document.getElementById("num");
-		var arr = Array(30,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33);
+		var opai = document.getElementById('paix');
+		var apai = document.getElementById('stop');
+
+		var arr = Array(33,64,85,37,46,85,74,24,68,51,94,35,75,24,38,62,54,3,2,30,25,70,94,33,15);
 
 		olr.onclick = function() {
 			if (arr.length>=60) {
@@ -106,7 +111,27 @@
 			show();
 			alert('删除的数值为：'+room);
 		}
+		var a;
+		opai.onclick = function() {
 
+			 a = setInterval("pai()","200");
+		}
+		apai.onclick = function() {
+
+			clearInterval(a);
+		}
+		
+		function pai(){
+			var room;
+				for (var j = arr.length - 1; j >= 0; j--) {
+					if(arr[j]>arr[j+1]){
+						 room = arr[j];
+						 arr[j] = arr[j+1];
+						 arr[j+1] = room;
+						 show();
+				}
+
+			}}
 
 		function show(data) {
 			if (data == 1) {
