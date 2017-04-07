@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务四</title>
+	<style>
+		.haha{
+			width: 50px;
+			height: 50px;
+			margin-left: 20px;
+			margin-top: 20px;
+			background: red;
+			float: left;
+			font-size: 30px;
+			line-height: 50px;
+			text-align: center;
+			
+		}
+		#hehe{
+			height: 100px;
+			position: relative;
+			top: 25px;
+			left: 50px;
+		}
+		.err{
+			background: red;
+
+		}
+		#ipt{
+			margin-left: 50px;
+			float: left;
+		}
+		#err{
+			background: red;
+			width: 100px;
+			display: none;
+			float: left;
+			
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="ipt">
+	<span id="err">请输入数字</span>
+	<button id="lr">左侧入</button>
+	<button id="rr">右侧入</button>
+	<button id="lc">左侧出</button>
+	<button id="rc">右侧出</button>
+	<div id="hehe"></div>
+	<script>
+		var olr = document.getElementById('lr');
+		var orr = document.getElementById('rr');
+		var olc = document.getElementById('lc');
+		var orc = document.getElementById('rc');
+		var oipt = document.getElementById('ipt');
+		var ohehe = document.getElementById('hehe');
+		var oerr = document.getElementById('err');
+		var arr = Array(3,5,6,9,8,2,3);
+
+		olr.onclick = function() {
+			arr.unshift(Number(oipt.value));
+			show();
+		}
+
+		orr.onclick = function() {
+			arr[arr.length] = oipt.value;
+			show();
+		}
+
+		olc.onclick = function() {
+			var room = arr.shift();
+			show();
+			alert('删除的数值为：'+room);
+		}
+
+		orc.onclick = function() {
+			var room = arr.pop();
+			show();
+			alert('删除的数值为：'+room);
+		}
+
+
+		function show(data) {
+			if (data == 1) {
+				for (var i = 0;i<arr.length;i++) {
+					var papa=document.createElement("div");
+    		  		var node=document.createTextNode(arr[i]);
+    		  		papa.className = 'haha';
+    		  		papa.index =i;
+    		  		ohehe.appendChild(papa);
+    		  		papa.appendChild(node);
+
+				}
+			}else{
+				var ohaha = ohehe.getElementsByClassName('haha');
+    		  		for (var i= ohaha.length -1; i >= 0; i--) {
+					ohehe.removeChild(ohehe.childNodes[i]);
+					}
+					console.log('clear success');
+				for (var i = 0;i<arr.length;i++) {
+					var papa=document.createElement("div");
+    		  		var node=document.createTextNode(arr[i]);
+    		  		papa.className = 'haha';
+
+    		  		papa.index =i;
+    		  		ohehe.appendChild(papa);
+    		  		papa.appendChild(node);
+    		  		on();
+
+				}
+			}
+
+		}		
+		show(1);
+		on();
+		function on(){
+			var ohaha = ohehe.getElementsByClassName('haha');
+			for (var i = 0; i <ohaha.length; i++) {
+				ohaha[i].onclick = function(){
+					console.log(this.index);
+					var del = arr.splice(this.index,1);
+					console.log(arr);
+					show();
+				}
+			}
+
+		}
+		oipt.onfocus = function() {
+			var reg=/^[1-9]\d*$|^0$/;
+			if(reg.test(oipt.value)==false){
+				oipt.className = 'err';
+				oerr.style.display = 'block';
+				// console.log(oerr)
+			}
+			else{
+				oipt.className = '';
+				oerr.style.display = 'none';
+			}
+		}
+		oipt.onblur = function() {
+			var reg=/^[1-9]\d*$|^0$/;
+			if(reg.test(oipt.value)==true){
+				oipt.className = '';
+				oerr.style.display = 'none';
+			}else{
+				oipt.className = 'err';
+				oerr.style.display = 'block';
+			}
+		}
+	</script>
+</body>
+</html>
