@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务五</title>
+	<style>
+		.haha{
+			width: 20px;
+			height: 100px;
+			margin-left: 10px;
+			margin-top: 20px;
+			background: red;
+			float: left;
+			font-size: 20px;
+			line-height: 50px;
+			text-align: center;
+			
+		}
+		.xixi{
+			width: 20px;
+			height: 100px;
+			background:white;
+			position: relative;
+		}
+		#hehe{
+			height: 100px;
+			position: relative;
+			top: 200px;
+			left: 100px;
+		}
+		.err{
+			background: red;
+
+		}
+		#ipt{
+			margin-left: 50px;
+			float: left;
+			width: 100px;
+		}
+		#err{
+			background: red;
+			/*width: 100px;*/
+			display: none;
+			float: left;
+			
+		}
+		#num{
+			position: absolute;
+			top: 400px;
+			left: 100px;
+		}
+	</style>
+</head>
+<body>
+	<input type="number" id="ipt" max="100" min="10">
+	<span id="err">数字在10~100之间</span>
+	<button id="lr">左侧入</button>
+	<button id="rr">右侧入</button>
+	<button id="lc">左侧出</button>
+	<button id="rc">右侧出</button>
+	<div id="hehe"></div>
+	<div id="num"></div>
+	<script>
+		var olr = document.getElementById('lr');
+		var orr = document.getElementById('rr');
+		var olc = document.getElementById('lc');
+		var orc = document.getElementById('rc');
+		var oipt = document.getElementById('ipt');
+		var ohehe = document.getElementById('hehe');
+		var oerr = document.getElementById('err');
+		var onum = document.getElementById("num");
+		var arr = Array(30,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33,25,66,90,18,52,33);
+
+		olr.onclick = function() {
+			if (arr.length>=60) {
+						alert('队列数量超过60！');
+						return false;
+					}
+					else{
+			arr.unshift(Number(oipt.value));
+			console.log(arr.length)
+		}
+			show();
+		}
+
+		orr.onclick = function() {
+			if (arr.length>=60) {
+						alert('队列数量超过60！');
+						return false;
+					}
+					else{
+			arr[arr.length] = oipt.value;
+			console.log(arr.length)
+		}
+			show();
+		}
+
+		olc.onclick = function() {
+			var room = arr.shift();
+			show();
+			alert('删除的数值为：'+room);
+		}
+
+		orc.onclick = function() {
+			var room = arr.pop();
+			show();
+			alert('删除的数值为：'+room);
+		}
+
+
+		function show(data) {
+			if (data == 1) {
+				
+				for (var i = 0;i<arr.length;i++) {
+					
+					var papa=document.createElement("div");
+					var xixi=document.createElement("div");
+    		  		var node=document.createTextNode(arr[i]);
+    		  		xixi.className = 'xixi';
+    		  		papa.className = 'haha';
+    		  		papa.index =i;
+    		  		var bom = oipt.value ;
+    		  		xixi.style.bottom = arr[i] + 'px';
+    		  		// papa.
+    		  		ohehe.appendChild(papa);
+    		  		papa.appendChild(xixi);
+    		  		papa.appendChild(node);
+    		  		on();
+				}
+				var nump = document.createElement('p');
+				var num  =document.createTextNode("当前队列元素个数为"+arr.length);
+				onum.appendChild(nump);
+				nump.appendChild(num);
+				
+
+			}else{
+				
+				var ohaha = ohehe.getElementsByClassName('haha');
+    		  		for (var i= ohaha.length -1; i >= 0; i--) {
+					ohehe.removeChild(ohehe.childNodes[i]);
+					}
+					onum.removeChild(onum.childNodes[0]);
+					// console.log('clear success');
+				for (var i = 0;i<arr.length;i++) {
+					var papa=document.createElement("div");
+					var xixi=document.createElement("div");
+    		  		var node=document.createTextNode(arr[i]);
+    		  		xixi.className = 'xixi';
+    		  		papa.className = 'haha';
+    		  		papa.index =i;
+    		  		var bom = oipt.value ;
+    		  		xixi.style.bottom = arr[i] + 'px';
+    		  		// papa.
+    		  		ohehe.appendChild(papa);
+    		  		papa.appendChild(xixi);
+    		  		papa.appendChild(node);
+    		  		on();
+				}
+				var nump = document.createElement('p');
+				var num  =document.createTextNode("当前队列元素个数为"+arr.length);
+				onum.appendChild(nump);
+				nump.appendChild(num);}
+
+			
+
+		}		
+		show(1);
+		on();
+		function on(){
+			var ohaha = ohehe.getElementsByClassName('haha');
+			for (var i = 0; i <ohaha.length; i++) {
+				ohaha[i].onclick = function(){
+					console.log(this.index);
+					var del = arr.splice(this.index,1);
+					console.log(arr);
+					show();
+				}
+			}
+
+		}
+		oipt.onfocus = function() {
+			if(oipt.value<10||oipt.value>100){
+				oipt.className = 'err';
+				oerr.style.display = 'block';
+				
+			}
+
+			else{
+				oipt.className = '';
+				oerr.style.display = 'none';
+			}
+		}
+		oipt.onblur = function() {
+			var reg=/^[1-9]\d*$|^0$/;
+			if(oipt.value<10||oipt.value>100){
+				oipt.className = 'err';
+				oerr.style.display = 'block';
+				
+			}else{
+				oipt.className = '';
+				oerr.style.display = 'none';
+			}
+		}
+
+	</script>
+</body>
+</html>
