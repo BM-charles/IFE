@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务六</title>
+	    <style>
+        ul {
+            list-style: none;
+        }
+        li {
+            margin: 5px;
+            color: white;
+            font-size: 18px;
+            background-color: red;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+	<textarea id="textarea"></textarea>
+	<button id="unshift">左入</button>
+	<button id="push">右入</button>
+	<button id="shift">左出</button>
+	<button id="pop">右出</button>
+	<input type="text" id="search">
+	<button id="search_button">search</button>
+	<ul id="queue">
+		
+	</ul>
+	<script>
+		var queue = document.getElementById('queue');
+		var textarea = document.getElementById('textarea');
+		var search = document.getElementById('search');
+        var search_button = document.getElementById('search_button');
+		function createList(value) {
+			var li = document.createElement('li');
+			li.innerHTML = value;
+			li.addEventListener('click',function() {
+				this.remove();
+			})
+			return li;
+		}
+		function addElements(position) {
+			var elements = textarea.value.split(/[\s,、]+/);
+			for (var i =0; i <elements.length; i++) {
+				if(elements[i]){
+					var li  = createList(elements[i]);
+					queue.insertAdjacentElement(position,li);
+				}
+			}
+		}
+		function searchItem() {
+			if(search.value){
+				[].slice.call(queue.children).forEach(function (current) {
+					current.style.backgroundColor ='red';
+				});
+				for (var i =0; i <queue.children.length; i++) {
+					if(queue.children[i].innerHTML.indexOf(search.value)!=-1){
+						// 如果没检索到返回-1
+						queue.children[i].style.backgroundColor = 'blue';
+					}
+				}
+			}
+		}
+		document.getElementById('unshift').addEventListener('click',function() {
+			 addElements("afterbegin");
+		});
+		document.getElementById('push').addEventListener('click',function() {
+			 addElements("beforeend");
+		});
+		document.getElementById('shift').addEventListener('click',function() {
+			 queue.firstElementChild.remove();
+		});
+		document.getElementById('pop').addEventListener('click',function() {
+			 queue.lastElementChild.remove();
+		});
+        search_button.addEventListener('click', searchItem);
+
+	</script>
+</body>
+</html>
