@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务一</title>
+	<style>
+		.div{
+			margin-top: 50px;
+			margin-left: 100px;
+		}
+		.ipt{
+			height: 30px;
+			width: 200px;
+			margin-left: 20px;
+			margin-right: 20px;
+			border-radius: 5px;
+		}
+		.ipt-a{
+			border: solid 1px #ccc;
+		}
+		.ipt-r{
+			border: solid 2px red;
+		}
+		.ipt-g{
+			border: solid 2px green;
+		}
+		.cla1{
+			display: none;
+		}	
+		.cla2{
+			color: red;
+			display: none;
+		}	
+		.cla3{
+			display: none;
+		}	
+		</style>
+</head>
+<body>
+<div class="div">
+	<span>名字</span><span><input type="text" class="ipt ipt-a"></span><button class="yan">验证</button><br>
+	<span class="cla1">&nbsp;&nbsp;&nbsp; 名称格式正确</span>
+	<span class="cla2">&nbsp;&nbsp;&nbsp; 名字不能为空</span>
+	<span class="cla3">&nbsp;&nbsp;&nbsp; 必填，长度为4~6个字符</span>
+</div>
+<div class="div">
+	<span>名字</span><input type="text" class="ipt ipt-a"><button class="yan">验证</button><br>
+	<span class="cla1">&nbsp;&nbsp;&nbsp; 名称格式正确</span>
+	<span class="cla2">&nbsp;&nbsp;&nbsp; 名字不能为空</span>
+	<span class="cla3">&nbsp;&nbsp;&nbsp; 必填，长度为4~6个字符</span>
+</div>
+<div class="div">
+	<span>名字</span><input type="text" class="ipt ipt-a"><button class="yan">验证</button>
+	<span class="cla1">&nbsp;&nbsp;&nbsp; 名称格式正确</span>
+	<span class="cla2">&nbsp;&nbsp;&nbsp; 名字不能为空</span>
+	<span class="cla3">&nbsp;&nbsp;&nbsp; 必填，长度为4~6个字符</span>
+</div>
+<script>
+	var ipt = document.getElementsByClassName('ipt');
+	var yan = document.getElementsByClassName('yan');
+	var div = document.getElementsByClassName('div');
+	var div1 = document.getElementsByClassName('cla1');
+	var div2 = document.getElementsByClassName('cla2');
+	var div3 = document.getElementsByClassName('cla3');
+	var patt1=new RegExp(/^.{4,16}$/);
+	function name(name) {
+		div2[name].style.display = 'block';
+		div1[name].style.display = 'none';
+		div3[name].style.display = 'none';
+	}
+	function long(long) {
+		div2[long].style.display = 'none';
+		div1[long].style.display = 'none';
+		div3[long].style.display = 'block';
+	}
+	function suc(suc) {
+		div1[suc].style.display = 'block';
+		div2[suc].style.display = 'none';
+		div3[suc].style.display = 'none';
+	}
+	for (var i = 0; i <yan.length; i++) {
+		yan[i].index = i;
+		yan[i].onclick = function() {
+			if(ipt[this.index].value ==null||ipt[this.index].value==""){
+				ipt[this.index].className = 'ipt ipt-r';
+				name(this.index);
+			}
+			else if(!patt1.test(ipt[this.index].value)){
+				ipt[this.index].className = 'ipt ipt-a';
+				long(this.index);
+			}else{
+				ipt[this.index].className = 'ipt ipt-g';
+				suc(this.index);
+			}
+		}
+	}
+</script>
+</body>
+</html>
