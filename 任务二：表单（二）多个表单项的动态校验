@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二</title>
+	<style>
+	form{
+		position: relative;
+		top: 100px;
+		left: 200px;
+	}
+		.ipt{
+			height: 30px;
+			width: 200px;
+			margin-left: 20px;
+			margin-right: 20px;
+			border-radius: 5px;
+			outline: none;
+			border: solid 1px #ccc;
+		}
+		.span{
+			margin-left: 70px;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="post">
+		<label>名称：</label><input type="text" class="ipt" id="ipt-1"><br>
+		<div><span class="span"></span></div><br>
+		<label>密码：</label><input type="password" class="ipt" id="ipt-2"><br>
+		<div><span class="span"></span></div><br>
+		<label>确认：</label><input type="password" class="ipt" id="ipt-3"><br>
+		<div><span class="span"></span></div><br>
+		<label>邮箱：</label><input type="text" class="ipt" id="ipt-4"><br>
+		<div><span class="span"></span></div><br>
+		<label>手机：</label><input type="text" class="ipt" id="ipt-5"><br>
+		<div><span class="span"></span></div><br>
+		<input type="submit" id="btn">
+	</form>
+	<script>
+		var ipt = document.getElementsByClassName('ipt');
+		var span = document.getElementsByClassName('span');
+		var patt2=new RegExp(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+		var patt3=new RegExp(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/);
+		for (var i = ipt.length - 1; i >= 0; i--) {
+			ipt[i].index = i;
+			ipt[i].onfocus = function() {
+				switch(ipt[this.index].id){
+					case "ipt-1":span[this.index].innerHTML = "必填，长度为4~16个字符";break;
+					case "ipt-2":span[this.index].innerHTML = "请输入密码";break;
+					case "ipt-3":span[this.index].innerHTML = "请确认密码";break;
+					case "ipt-4":span[this.index].innerHTML = "请输入邮箱";break;
+					case "ipt-5":span[this.index].innerHTML = "请输入电话";break;
+				} 
+			}
+			ipt[i].onblur = function() {
+				for (var i = span.length - 1; i >= 0; i--) {
+					span[i].innerHTML = "";
+				}
+				if (ipt[this.index].value ==null||ipt[this.index].value=="") {
+					ipt[this.index].style.border = 'solid 2px red';
+					switch(ipt[this.index].id){
+					case "ipt-1":span[this.index].innerHTML = "名字不能为空";break;
+					case "ipt-2":span[this.index].innerHTML = "密码不能为空";break;
+					case "ipt-3":span[this.index].innerHTML = "确密不能为空";break;
+					case "ipt-4":span[this.index].innerHTML = "邮箱不能为空";break;
+					case "ipt-5":span[this.index].innerHTML = "电话不能为空";break;
+					}
+				}
+				else{
+					switch(ipt[this.index].id){
+					case "ipt-3":if(ipt[this.index].value !=ipt[this.index-1].value){span[this.index].innerHTML = "请与密码相同";ipt[this.index].style.border = 'solid 2px red';}else{ipt[this.index].style.border = 'solid 2px green';span[this.index].innerHTML= '正确';};break;
+					case "ipt-4":if(!patt2.test(ipt[this.index].value)){span[this.index].innerHTML = "请注意邮箱格式";ipt[this.index].style.border = 'solid 2px red';}else{ipt[this.index].style.border = 'solid 2px green';span[this.index].innerHTML= '正确';};break;
+					case "ipt-5":if(!patt3.test(ipt[this.index].value)){span[this.index].innerHTML = "请注意手机格式";ipt[this.index].style.border = 'solid 2px red';}else{ipt[this.index].style.border = 'solid 2px green';span[this.index].innerHTML= '正确';};break;
+					default:ipt[this.index].style.border = 'solid 2px green';span[this.index].innerHTML= '正确';
+					}
+				}
+			}
+		}
+		document.getElementById('btn').onclick = function() {
+			if ((ipt[0].style.border=='2px solid green')&&(ipt[1].style.border=='2px solid green')&&(ipt[2].style.border=='2px solid green')&&(ipt[3].style.border=='2px solid green')&&(ipt[4].style.border=='2px solid green')) {alert('输入正确');}
+			else{alert('输入错误');}
+		}
+	</script>
+</body>
+</html>
